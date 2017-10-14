@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="base_url">http://api.openweathermap.org/data/2.5/forecast/</string>
+    <string name="mode">json</string>
+    <string name="units">metric</string>
+    <integer name="daycount">7</integer>
+</resources>

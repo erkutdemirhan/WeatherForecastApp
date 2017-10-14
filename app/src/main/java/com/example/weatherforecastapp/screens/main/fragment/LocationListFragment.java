@@ -7,4 +7,6 @@ import com.example.weatherforecastapp.base.BaseFragment;
  */
 
 public class LocationListFragment extends BaseFragment {
+       
+
 }

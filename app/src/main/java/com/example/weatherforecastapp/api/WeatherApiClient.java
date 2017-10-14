@@ -10,7 +10,7 @@ import retrofit2.http.Query;
  * Created by Erkut Demirhan on 14/10/17.
  */
 
-public interface ApiClient {
+public interface WeatherApiClient {
 
     @GET("daily")
     Call<DailyForecastResponse> getDailyForecast(

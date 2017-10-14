@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">WeatherForecastApp</string>
     <string name="action_settings">Settings</string>
+    <string name="city_name">City name: %1$s</string>
+    <string name="temperature">Temperature: %1$f °C</string>
+    <string name="current_location">Current Location</string>
 </resources>

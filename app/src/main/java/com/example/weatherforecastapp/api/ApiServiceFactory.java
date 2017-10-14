@@ -11,20 +11,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiServiceFactory {
 
-    private static final String BASE_URL = "http://api.openweathermap.org/data/2.5/forecast/";
-
-    public static ApiClient getApiClient() {
-        return provideRetrofitForApp().create(ApiClient.class);
+    public static WeatherApiClient getWeatherApiClient(final String baseUrl) {
+        return provideRetrofitForApp(baseUrl).create(WeatherApiClient.class);
     }
 
-    private static Retrofit provideRetrofitForApp() {
+    private static Retrofit provideRetrofitForApp(final String baseUrl) {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
 
         return new Retrofit.Builder()
             .client(client)
-            .baseUrl(BASE_URL)
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
     }
