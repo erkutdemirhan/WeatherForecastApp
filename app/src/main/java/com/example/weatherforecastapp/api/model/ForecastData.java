@@ -13,10 +13,22 @@ public class ForecastData {
     @SerializedName("dt")
     private long forecastTimestamp;
 
-    @SerializedName("main")
+    @SerializedName("temp")
     private Temperature temperature;
 
     @SerializedName("weather")
     private List<Weather> weathers;
 
+
+    public long getForecastTimestamp() {
+        return forecastTimestamp;
+    }
+
+    public Temperature getTemperature() {
+        return temperature;
+    }
+
+    public List<Weather> getWeathers() {
+        return weathers;
+    }
 }

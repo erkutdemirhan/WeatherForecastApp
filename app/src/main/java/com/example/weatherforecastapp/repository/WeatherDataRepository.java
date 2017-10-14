@@ -1,5 +1,6 @@
 package com.example.weatherforecastapp.repository;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
 import com.example.weatherforecastapp.api.WeatherApiClient;
@@ -21,6 +22,10 @@ public class WeatherDataRepository extends BaseRepository {
 
     public WeatherDataRepository(WeatherApiClient apiClient) {
         this.apiClient = apiClient;
+    }
+
+    public LiveData<Resource<DailyForecastResponse>> getCurrentLocForecast() {
+        return currentLocationForecast;
     }
 
     public void sendWeatherForecastRequestForCurrentLocation(

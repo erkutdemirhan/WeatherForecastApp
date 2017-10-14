@@ -8,8 +8,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Temperature {
 
-    @SerializedName("temp")
-    private String average;
+    @SerializedName("day")
+    private String dayTemperature;
 
     @SerializedName("temp_min")
     private String min;
@@ -22,8 +22,8 @@ public class Temperature {
 
     private double pressure;
 
-    public String getAverage() {
-        return average;
+    public String getDayTemperature() {
+        return dayTemperature;
     }
 
     public String getMin() {
