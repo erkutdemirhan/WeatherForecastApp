@@ -36,7 +36,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         viewModel = ViewModelProviders.of(MainActivity.this).get(MainViewModel.class);
         binding   = DataBindingUtil.setContentView(MainActivity.this, R.layout.activity_main);
+        binding.setMainActivity(MainActivity.this);
         setSupportActionBar(binding.toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
         switchToFragment(new LocationListFragment());
         askForLocationPermission();
     }

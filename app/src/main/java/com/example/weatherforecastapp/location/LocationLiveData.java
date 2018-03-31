@@ -54,8 +54,6 @@ public class LocationLiveData extends LiveData<Location> implements LocationList
 
     @Override
     public void onLocationChanged(Location location) {
-        //setValue(location);
-
         if(latestLocation == null) {
             latestLocation = location;
             setValue(latestLocation);
@@ -65,7 +63,6 @@ public class LocationLiveData extends LiveData<Location> implements LocationList
                 setValue(latestLocation);
             }
         }
-
     }
 
     @Override

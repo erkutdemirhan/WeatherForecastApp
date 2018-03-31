@@ -3,13 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="showProgress"
             type="boolean" />
+
         <variable
             name="curLocCity"
             type="com.example.weatherforecastapp.api.model.City" />
+
         <variable
             name="curLocForecastData"
             type="com.example.weatherforecastapp.api.model.ForecastData" />
@@ -17,37 +21,43 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:background="@color/lightGrey">
 
         <LinearLayout
             android:id="@+id/current_location_container"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/cur_location_height"
-            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/bg_current_location_container"
             android:orientation="vertical"
-            android:visibility="@{curLocCity != null ? View.VISIBLE:View.GONE}"
-            android:background="@color/darkGrey">
+            android:padding="10dp"
+            android:visibility="gone">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:text="@string/current_location"/>
+                android:text="@string/current_location"
+                android:textColor="@color/darkGrey"
+                android:textSize="16sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="@{@string/country_code(curLocCity.countryCode)}"/>
+                android:text="@{@string/country_code(curLocCity.countryCode)}"
+                android:textColor="@color/darkGrey" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="@{@string/city_name(curLocCity.name)}"/>
+                android:text="@{@string/city_name(curLocCity.name)}"
+                android:textColor="@color/darkGrey" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="@{@string/temperature(curLocForecastData.temperature.dayTemperature)}"/>
+                android:text="@{@string/temperature(curLocForecastData.temperature.dayTemperature)}"
+                android:textColor="@color/darkGrey" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

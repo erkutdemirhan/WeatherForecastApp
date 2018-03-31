@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.weatherforecastapp.screens.main.MainActivity">
 
     <data>
+
         <variable
             name="mainActivity"
             type="com.example.weatherforecastapp.screens.main.MainActivity" />
@@ -19,8 +20,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:background="?attr/colorPrimary" />
 
         <FrameLayout
             android:id="@+id/fragment_container"
@@ -32,11 +32,11 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{mainActivity.onAddButtonPressed}"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@android:drawable/ic_input_add" />
+            android:onClick="@{mainActivity.onAddButtonPressed}"
+            app:srcCompat="@drawable/ic_plus_black" />
 
     </RelativeLayout>
 </layout>

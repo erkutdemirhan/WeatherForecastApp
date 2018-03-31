@@ -10,6 +10,8 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.example.weatherforecastapp.R;
 import com.example.weatherforecastapp.api.response.DailyForecastResponse;
@@ -53,6 +55,9 @@ public class LocationListFragment extends BaseFragment {
                     final DailyForecastResponse response = dailyForecastResponseResource.getData();
                     binding.setCurLocForecastData(response.getForecastDataList().get(0));
                     binding.setCurLocCity(response.getCityInfo());
+                    if (binding.currentLocationContainer.getVisibility() == View.GONE) {
+                        animateCurrentLocationContainer();
+                    }
                 } else if(dailyForecastResponseResource.getState() == Resource.State.LOADING) {
                     binding.setShowProgress(true);
                 } else if(dailyForecastResponseResource.getState() == Resource.State.ERROR) {
@@ -60,6 +65,12 @@ public class LocationListFragment extends BaseFragment {
                 }
             }
         });
+    }
+
+    private void animateCurrentLocationContainer() {
+        binding.currentLocationContainer.setVisibility(View.VISIBLE);
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.slide_in_top);
+        binding.currentLocationContainer.startAnimation(animation);
     }
 
     @Override

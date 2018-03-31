@@ -4,7 +4,6 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
 import com.example.weatherforecastapp.api.WeatherApiClient;
-import com.example.weatherforecastapp.api.model.ForecastData;
 import com.example.weatherforecastapp.api.response.DailyForecastResponse;
 
 import retrofit2.Call;
