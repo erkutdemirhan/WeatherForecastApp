@@ -11,20 +11,20 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.View;
 
 import com.example.weatherforecastapp.R;
+import com.example.weatherforecastapp.base.BaseActivity;
 import com.example.weatherforecastapp.base.BaseFragment;
 import com.example.weatherforecastapp.databinding.ActivityMainBinding;
 import com.example.weatherforecastapp.location.LocationLiveData;
+import com.example.weatherforecastapp.screens.main.dialog.AddLocationDialog;
 import com.example.weatherforecastapp.screens.main.fragment.LocationListFragment;
 import com.example.weatherforecastapp.utils.PermissionUtils;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private static final int LOCATION_PERMISSION_REQUEST_ID = 1317;
 
@@ -87,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onAddButtonPressed(View view) {
-        Toast.makeText(MainActivity.this, "Add location", Toast.LENGTH_SHORT).show();
+        AddLocationDialog addLocationDialog = new AddLocationDialog(MainActivity.this);
+        addLocationDialog.show();
     }
 
     @Override

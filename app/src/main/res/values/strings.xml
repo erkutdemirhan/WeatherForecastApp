@@ -5,4 +5,9 @@
     <string name="city_name">City: %1$s</string>
     <string name="temperature">Temperature: %1$s °C</string>
     <string name="current_location">Current Location</string>
+    <string name="title_add_location">Please enter the ZIP code of the location you want to add</string>
+    <string name="zip_code">ZIP Code</string>
+    <string name="add">Add</string>
+    <string name="warning_empty_zip_code">Please enter a ZIP code</string>
+    <string name="warning_invalid_zip_code">Please enter a valid ZIP code</string>
 </resources>
