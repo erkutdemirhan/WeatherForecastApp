@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.weatherforecastapp.R;
+import com.example.weatherforecastapp.UserPreferences;
 import com.example.weatherforecastapp.base.BaseDialog;
 import com.example.weatherforecastapp.databinding.DialogAddLocationBinding;
 import com.example.weatherforecastapp.utils.StringUtils;
@@ -20,6 +21,7 @@ import com.example.weatherforecastapp.utils.StringUtils;
 public class AddLocationDialog extends BaseDialog {
 
     private DialogAddLocationBinding binding;
+    private AddLocationListener addLocationListener;
 
     public AddLocationDialog(@NonNull Context context) {
         super(context);
@@ -42,6 +44,23 @@ public class AddLocationDialog extends BaseDialog {
             return;
         }
 
-        Toast.makeText(getContext(), "Add location", Toast.LENGTH_SHORT).show();
+        if (!UserPreferences.getInstance(getContext()).addNewZipCode(formattedZipCodeStr)) {
+            Toast.makeText(getContext(), R.string.warning_already_added_zip_code, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (addLocationListener != null) {
+            addLocationListener.onZipCodeAdded(formattedZipCodeStr);
+        }
+
+        cancel();
+    }
+
+    public void setAddLocationListener(AddLocationListener addLocationListener) {
+        this.addLocationListener = addLocationListener;
+    }
+
+    public interface AddLocationListener {
+        void onZipCodeAdded(final String zipCodeStr);
     }
 }

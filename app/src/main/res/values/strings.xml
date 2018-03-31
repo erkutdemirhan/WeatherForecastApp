@@ -10,4 +10,5 @@
     <string name="add">Add</string>
     <string name="warning_empty_zip_code">Please enter a ZIP code</string>
     <string name="warning_invalid_zip_code">Please enter a valid ZIP code</string>
+    <string name="warning_already_added_zip_code">This ZIP code is already added</string>
 </resources>

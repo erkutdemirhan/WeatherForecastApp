@@ -14,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.weatherforecastapp.R;
 import com.example.weatherforecastapp.base.BaseActivity;
@@ -24,7 +25,7 @@ import com.example.weatherforecastapp.screens.main.dialog.AddLocationDialog;
 import com.example.weatherforecastapp.screens.main.fragment.LocationListFragment;
 import com.example.weatherforecastapp.utils.PermissionUtils;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements AddLocationDialog.AddLocationListener {
 
     private static final int LOCATION_PERMISSION_REQUEST_ID = 1317;
 
@@ -88,6 +89,7 @@ public class MainActivity extends BaseActivity {
 
     public void onAddButtonPressed(View view) {
         AddLocationDialog addLocationDialog = new AddLocationDialog(MainActivity.this);
+        addLocationDialog.setAddLocationListener(MainActivity.this);
         addLocationDialog.show();
     }
 
@@ -111,5 +113,10 @@ public class MainActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onZipCodeAdded(String zipCodeStr) {
+        Toast.makeText(MainActivity.this, "Zip Code Added", Toast.LENGTH_SHORT).show();
     }
 }
