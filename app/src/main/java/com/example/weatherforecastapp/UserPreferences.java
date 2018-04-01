@@ -2,6 +2,7 @@ package com.example.weatherforecastapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class UserPreferences {
 
     private static final String SHARED_PREFS_KEY = "shared_prefs";
 
-    private static final String ZIP_CODES_KEY = "zip_codes";
+    private static final String CITY_NAMES_KEY = "city_names";
     private static final String DELIMITER = ",";
 
     private static UserPreferences instance = null;
@@ -34,39 +35,42 @@ public class UserPreferences {
         editor = prefs.edit();
     }
 
-    public boolean addNewZipCode(final String zipCodeStr) {
-        List<String> zipCodeList = getZipCodes();
-        if(zipCodeList.contains(zipCodeStr)) {
+    public boolean addNewCityName(final String cityNameStr) {
+        List<String> cityNameList = getCityNames();
+        if(cityNameList.contains(cityNameStr)) {
             return false;
         } else {
-            zipCodeList.add(zipCodeStr);
-            final String newZipCodesStr = prepareCommaSeparatedZipCodes(zipCodeList);
-            editor.putString(ZIP_CODES_KEY, newZipCodesStr);
+            cityNameList.add(cityNameStr);
+            final String newCityNamesStr = prepareCommaSeparatedCityNames(cityNameList);
+            editor.putString(CITY_NAMES_KEY, newCityNamesStr);
             editor.commit();
             return true;
         }
     }
 
-    public List<String> getZipCodes() {
-        final String zipCodesStr = prefs.getString(ZIP_CODES_KEY, "");
-        return getZipCodesFromCommaSeparatedStr(zipCodesStr);
+    public List<String> getCityNames() {
+        final String zipCodesStr = prefs.getString(CITY_NAMES_KEY, "");
+        return getCityNamesFromCommaSeparatedStr(zipCodesStr);
     }
 
-    private List<String> getZipCodesFromCommaSeparatedStr(final String zipCodeListStr) {
-        final String[] zipCodes        = zipCodeListStr.split(DELIMITER);
-        final List<String> zipCodeList = new ArrayList<>();
-        for (String zipCodeStr : zipCodes) {
-            zipCodeList.add(zipCodeStr);
+    private List<String> getCityNamesFromCommaSeparatedStr(final String cityNameListStr) {
+        final String[] cityNames        = cityNameListStr.split(DELIMITER);
+        final List<String> cityNameList = new ArrayList<>();
+        if(TextUtils.isEmpty(cityNameListStr)) {
+            return cityNameList;
         }
-        return zipCodeList;
+        for (String cityNameStr : cityNames) {
+            cityNameList.add(cityNameStr);
+        }
+        return cityNameList;
     }
 
-    private String prepareCommaSeparatedZipCodes(final List<String> zipCodeList) {
+    private String prepareCommaSeparatedCityNames(final List<String> cityNameList) {
         StringBuilder sb = new StringBuilder();
         String delimiter = "";
-        for (String zipCodeStr : zipCodeList) {
+        for (String cityNameStr : cityNameList) {
             sb.append(delimiter);
-            sb.append(zipCodeStr);
+            sb.append(cityNameStr);
             delimiter = DELIMITER;
         }
         return sb.toString();

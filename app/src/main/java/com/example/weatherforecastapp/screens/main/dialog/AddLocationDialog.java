@@ -12,7 +12,6 @@ import com.example.weatherforecastapp.R;
 import com.example.weatherforecastapp.UserPreferences;
 import com.example.weatherforecastapp.base.BaseDialog;
 import com.example.weatherforecastapp.databinding.DialogAddLocationBinding;
-import com.example.weatherforecastapp.utils.StringUtils;
 
 /**
  * Created by Erkut Demirhan on 31/03/18.
@@ -31,26 +30,21 @@ public class AddLocationDialog extends BaseDialog {
     }
 
     public void onAddButtonPressed(View view) {
-        final String zipCodeStr = binding.addLocationEt.getText().toString();
-        final String formattedZipCodeStr = zipCodeStr.trim().toUpperCase();
+        final String cityName          = binding.addLocationEt.getText().toString();
+        final String formattedCityName = cityName.trim().toLowerCase();
 
-        if (TextUtils.isEmpty(formattedZipCodeStr)) {
-            Toast.makeText(getContext(), R.string.warning_empty_zip_code, Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(formattedCityName)) {
+            Toast.makeText(getContext(), R.string.warning_empty_city_name, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (!StringUtils.isValidZipCode(formattedZipCodeStr)) {
-            Toast.makeText(getContext(), R.string.warning_invalid_zip_code, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (!UserPreferences.getInstance(getContext()).addNewZipCode(formattedZipCodeStr)) {
-            Toast.makeText(getContext(), R.string.warning_already_added_zip_code, Toast.LENGTH_SHORT).show();
+        if (!UserPreferences.getInstance(getContext()).addNewCityName(formattedCityName)) {
+            Toast.makeText(getContext(), R.string.warning_already_added_city_name, Toast.LENGTH_SHORT).show();
             return;
         }
 
         if (addLocationListener != null) {
-            addLocationListener.onZipCodeAdded(formattedZipCodeStr);
+            addLocationListener.onCityNameAdded(formattedCityName);
         }
 
         cancel();
@@ -61,6 +55,6 @@ public class AddLocationDialog extends BaseDialog {
     }
 
     public interface AddLocationListener {
-        void onZipCodeAdded(final String zipCodeStr);
+        void onCityNameAdded(final String cityName);
     }
 }

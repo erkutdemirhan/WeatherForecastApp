@@ -18,6 +18,8 @@ import com.example.weatherforecastapp.databinding.FragmentLocationListBinding;
 import com.example.weatherforecastapp.repository.Resource;
 import com.example.weatherforecastapp.screens.main.MainViewModel;
 
+import java.util.List;
+
 /**
  * Created by Erkut Demirhan on 14/10/17.
  */
@@ -42,6 +44,7 @@ public class LocationListFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         listenForCurrentLocationForecast();
+        listenForSavedWeatherForecasts();
     }
 
     private void listenForCurrentLocationForecast() {
@@ -60,6 +63,17 @@ public class LocationListFragment extends BaseFragment {
                     binding.setShowProgress(true);
                 } else if(dailyForecastResponseResource.getState() == Resource.State.ERROR) {
                     binding.setShowProgress(false);
+                }
+            }
+        });
+    }
+
+    private void listenForSavedWeatherForecasts() {
+        viewModel.getSavedWeatherForecastData().observe(LocationListFragment.this, new Observer<Resource<List<DailyForecastResponse>>>() {
+            @Override
+            public void onChanged(@Nullable Resource<List<DailyForecastResponse>> forecastListResource) {
+                if (forecastListResource.getState() == Resource.State.SUCCESS) {
+
                 }
             }
         });

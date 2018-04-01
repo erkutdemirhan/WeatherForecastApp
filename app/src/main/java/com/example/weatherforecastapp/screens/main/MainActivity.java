@@ -14,7 +14,6 @@ import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.weatherforecastapp.R;
 import com.example.weatherforecastapp.base.BaseActivity;
@@ -43,6 +42,7 @@ public class MainActivity extends BaseActivity implements AddLocationDialog.AddL
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
         switchToFragment(new LocationListFragment());
+        viewModel.sendForecastRequestsWithSavedCityNames();
         askForLocationPermission();
     }
 
@@ -116,7 +116,7 @@ public class MainActivity extends BaseActivity implements AddLocationDialog.AddL
     }
 
     @Override
-    public void onZipCodeAdded(String zipCodeStr) {
-        Toast.makeText(MainActivity.this, "Zip Code Added", Toast.LENGTH_SHORT).show();
+    public void onCityNameAdded(String cityName) {
+        viewModel.sendForecastRequestWithCityName(cityName);
     }
 }

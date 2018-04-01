@@ -37,8 +37,8 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.3.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
     // Android arch libraries
-    compile 'android.arch.lifecycle:extensions:1.0.0-beta2'
-    annotationProcessor 'android.arch.lifecycle:compiler:1.0.0-beta2'
+    compile 'android.arch.lifecycle:extensions:1.1.1'
+    annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
     // Design libraries
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'de.hdodenhof:circleimageview:2.1.0'

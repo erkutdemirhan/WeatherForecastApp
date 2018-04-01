@@ -13,12 +13,20 @@ import retrofit2.http.Query;
 public interface WeatherApiClient {
 
     @GET("daily")
-    Call<DailyForecastResponse> getDailyForecast(
+    Call<DailyForecastResponse> getDailyForecastByLocation(
             @Query("appid") final String appId,
             @Query("mode") final String responseBodyType,
             @Query("units") final String measurementUnit,
-            @Query("daycount") final int forecastDayCount,
+            @Query("cnt") final int forecastDayCount,
             @Query("lat") final double latitude,
             @Query("lon") final double longitude);
+
+    @GET("daily")
+    Call<DailyForecastResponse> getDailyForecastByCityName(
+            @Query("appid") final String appId,
+            @Query("mode") final String responseBodyType,
+            @Query("units") final String measurementUnit,
+            @Query("cnt") final int forecastDayCount,
+            @Query("q") final String cityName);
 
 }
