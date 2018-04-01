@@ -49,8 +49,8 @@ public class UserPreferences {
     }
 
     public List<String> getCityNames() {
-        final String zipCodesStr = prefs.getString(CITY_NAMES_KEY, "");
-        return getCityNamesFromCommaSeparatedStr(zipCodesStr);
+        final String cityNamesStr = prefs.getString(CITY_NAMES_KEY, "");
+        return getCityNamesFromCommaSeparatedStr(cityNamesStr);
     }
 
     private List<String> getCityNamesFromCommaSeparatedStr(final String cityNameListStr) {

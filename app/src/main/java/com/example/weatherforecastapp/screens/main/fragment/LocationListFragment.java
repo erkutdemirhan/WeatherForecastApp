@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.example.weatherforecastapp.base.BaseFragment;
 import com.example.weatherforecastapp.databinding.FragmentLocationListBinding;
 import com.example.weatherforecastapp.repository.Resource;
 import com.example.weatherforecastapp.screens.main.MainViewModel;
+import com.example.weatherforecastapp.screens.main.adapter.AddedForecastDataAdapter;
 
 import java.util.List;
 
@@ -30,6 +32,7 @@ public class LocationListFragment extends BaseFragment {
 
     private FragmentLocationListBinding binding;
     private MainViewModel viewModel;
+    private AddedForecastDataAdapter addedDataAdapter;
 
     @Nullable
     @Override
@@ -43,8 +46,16 @@ public class LocationListFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initAddedDataRecyclerView();
         listenForCurrentLocationForecast();
         listenForSavedWeatherForecasts();
+    }
+
+    private void initAddedDataRecyclerView() {
+        addedDataAdapter        = new AddedForecastDataAdapter();
+        LinearLayoutManager llm = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        binding.addedDataRv.setLayoutManager(llm);
+        binding.addedDataRv.setAdapter(addedDataAdapter);
     }
 
     private void listenForCurrentLocationForecast() {
@@ -73,7 +84,7 @@ public class LocationListFragment extends BaseFragment {
             @Override
             public void onChanged(@Nullable Resource<List<DailyForecastResponse>> forecastListResource) {
                 if (forecastListResource.getState() == Resource.State.SUCCESS) {
-
+                    addedDataAdapter.updateForecastData(forecastListResource.getData());
                 }
             }
         });

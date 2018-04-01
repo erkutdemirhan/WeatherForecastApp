@@ -8,6 +8,7 @@
     <string name="title_add_location">Please enter the name of the city you want to add</string>
     <string name="city_name">City name</string>
     <string name="add">Add</string>
+    <string name="added_location_param">Added Location %d</string>
     <string name="warning_empty_city_name">Please enter a city name</string>
     <string name="warning_already_added_city_name">This city name is already added</string>
 </resources>

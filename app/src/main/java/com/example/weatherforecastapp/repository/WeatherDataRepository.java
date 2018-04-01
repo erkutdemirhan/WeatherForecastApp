@@ -22,10 +22,12 @@ public class WeatherDataRepository extends BaseRepository {
     private final MutableLiveData<Resource<DailyForecastResponse>> currentLocationForecast     = new MutableLiveData<>();
     private final MutableLiveData<Resource<List<DailyForecastResponse>>> savedLocationForecast = new MutableLiveData<>();
 
+    private final List<DailyForecastResponse> savedForecastList;
     private final WeatherApiClient apiClient;
 
     public WeatherDataRepository(WeatherApiClient apiClient) {
-        this.apiClient = apiClient;
+        this.apiClient         = apiClient;
+        this.savedForecastList = new ArrayList<>();
     }
 
     public LiveData<Resource<DailyForecastResponse>> getCurrentLocForecast() {
@@ -77,13 +79,9 @@ public class WeatherDataRepository extends BaseRepository {
         call.enqueue(new Callback<DailyForecastResponse>() {
             @Override
             public void onResponse(Call<DailyForecastResponse> call, Response<DailyForecastResponse> response) {
-                if(response != null || response.isSuccessful()) {
-                    List<DailyForecastResponse> data = savedLocationForecast.getValue().getData();
-                    if(data == null) {
-                        data = new ArrayList<DailyForecastResponse>();
-                    }
-                    data.add(response.body());
-                    savedLocationForecast.setValue(Resource.success(data));
+                if(response != null && response.isSuccessful()) {
+                    savedForecastList.add(response.body());
+                    savedLocationForecast.setValue(Resource.success(savedForecastList));
                 } else {
                     savedLocationForecast.setValue(Resource.<List<DailyForecastResponse>>error(""));
                 }
